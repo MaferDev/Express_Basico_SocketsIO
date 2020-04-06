@@ -1,0 +1,14 @@
+{
+  "name": "node-express",
+  "version": "1.0.0",
+  "description": "Curso de express nodejs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Mary Huamán",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
