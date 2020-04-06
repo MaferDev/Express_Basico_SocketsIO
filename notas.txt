@@ -1,0 +1,5 @@
+
+Generador de express
+> npm install express-generator -g
+> npm install < Para instalar las dependencias
+> npm start < para correr la app 
