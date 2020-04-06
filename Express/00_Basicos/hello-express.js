@@ -1,9 +1,27 @@
 const express = require('express'),
  app = express()
 
-
 app
-  .get('/',(req,res)=>res.end('<h1>Hola Mundo desde Express.js</h1>'))
+  .get('/',(req,res)=>{
+    res.end('<h1>GET request to the homepage</h1>')
+  })
+  .get('/response',(req,res)=>{
+    // Send te permite lo mismo que end, pero puede realizar otras operaciones más
+    res.send('<h1>Response</h1>')
+  })
+  .get('/redirigir',(req,res)=>{
+    // Se redirigira a otra ruta redirect(tipo de redirección, nueva ruta)
+    //301 definitivo
+    res.redirect(301,`https://google.com`)
+  })
+  .get('/json',(req,res)=>{
+    // Se redirigira a otra ruta redirect(tipo de redirección, nueva ruta)
+    //301 definitivo
+    res.json({
+      name:'Fernanda',
+      age:28
+    })
+  })
   .get('/users',(req,res)=>{
     // Se utiliza rutas y configura el tipo de contenido q tiene la pagina
     res
