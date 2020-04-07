@@ -1,0 +1,15 @@
+{
+  "name": "contador-conexiones",
+  "version": "1.0.0",
+  "description": "Contador de conexiones activas con socketIO",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -e html app.js"
+  },
+  "author": "Mary Huaman <fer.hs19@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.2",
+    "socket.io": "^2.3.0"
+  }
+}
