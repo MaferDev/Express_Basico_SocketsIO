@@ -4,7 +4,7 @@
   "description": "Proyecto con express",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon -e hbs server.js"
   },
   "author": "Mary Huamán",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "babelify-express": "^0.1.7",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-hbs": "^2.3.2",
     "express-session": "^1.17.0",
     "hbs": "^4.1.1",
     "http-errors": "^1.7.3",

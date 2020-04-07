@@ -1,4 +1,5 @@
 const express = require('express'),
+  path = require('path'),
   createError = require('http-errors'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
@@ -17,17 +18,21 @@ const express = require('express'),
   Use: Para trabajar con midelware
   get: Obtener alguna característica de la app
 */
+
+hbs.registerPartials(`${__dirname}/views/partials`,(err)=>{})
+
+
 app
   .set('port',(process.env.PORT||3000))
-  .set('views',`${__dirname}/views`)
-  .set('view_engine','hbs')
+  .set('views', path.join(__dirname,'views'))
+  .set('view engine','hbs')
   .use(favicon(`${__dirname}/public/img/favicon.png`))
   .use(logger('dev'))
   .use(express.json())
-  .use(express.urlencoded({extended:false}))
+  .use(express.urlencoded({extended:false})) //Express obtenga los formularios de forma correcta
   .use(cookieParser())
   .use(session({
-    secret:'asasasas',
+    secret:'shhhhhhhhh',
     saveUninitialized:true,
     resave:true
   }))
@@ -39,15 +44,15 @@ app
     outputStyle:'compressed'
   }))
   .use(browserify_express({
-    entry:`${__dirname}/public`,
+    entry:`${__dirname}/public/js/index.js`,
     watch:`${__dirname}/public/js/`,
     mount:`/js/script.js`,
     verbose:true,
     minify:true,
     bundle_opts:{debug:true}
   }))
-  .use(express.static(`${__dirname}/public`))
   .use(routes)
+  .use(express.static(`${__dirname}/public`))
   .use((req,res,next)=>next(createError(404)))
   .use((err,req,res,next)=>{
    res.status(err.static||500)
