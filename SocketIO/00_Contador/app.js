@@ -12,6 +12,8 @@ const c= console.log,
  fs = require('fs'),
  io = require('socket.io')(http)
 
+let connection = 0
+
 function server(req,res){
   fs.readFile('index.html',(error,data)=>{
    if(error){ 
@@ -33,7 +35,21 @@ io.on('connection',socket=>{
  
  
  //Se recepciona el mensaje
- socket.on('other event',data=>{
-  c(data)
- })
+ socket.on('other event',data=>c(data))
+
+
+ connection++
+
+ //Se detecta la connexión y se suma uno
+ c(`Active Connections: ${connection}`)
+ socket.emit('connect users',{connection})
+ socket.broadcast.emit('connect users',{connection})
+
+ //Se reconoce la desconexión y se quita una connexion
+ socket.on('disconnect',()=>{
+  connection--
+  c('Disconected')
+  c(`Active Connections: ${connection}`)
+  socket.broadcast.emit('connect users',{connection})
+})
 })

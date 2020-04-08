@@ -25,6 +25,11 @@
      io.emit('other event',{name:'Fer',mail:'fer@...'})
     })
    })
+
+   io.on('connect users',data=>{
+    c(`Updating from the server: there is ${data.connection} active connections.`)
+    d.getElementById('connections').textContent = data.connection
+   })
   })(document,console.log,io())
  </script>
 </body>
