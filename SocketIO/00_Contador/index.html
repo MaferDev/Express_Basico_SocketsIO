@@ -3,9 +3,29 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Contador de conexiones con Socket.IO</title>
+ <title>Connection counter with Socket.IO</title>
 </head>
 <body>
-  <h1>Contador de conexiones con Socket IO.:)</h1>
+ <h1>Connection counter with Socket.IO</h1>
+ <h3 id="test"></h3>
+ <p>
+  Number of active connections : <b id="connections"></b>
+ </p>
+ <button id="btnSend" type="button">Send</button>
+ <script src="./socket.io/socket.io.js"></script>
+ <script>
+  ;
+  ((d,c,io)=>{
+   io.on('connection',data=>{
+    c(data)
+    d.getElementById('test').innerHTML=data.message
+    
+    //Se emite un mensaje desde el cliente
+    d.getElementById('btnSend').addEventListener('click',e=>{
+     io.emit('other event',{name:'Fer',mail:'fer@...'})
+    })
+   })
+  })(document,console.log,io())
+ </script>
 </body>
 </html>
